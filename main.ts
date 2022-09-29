@@ -66,7 +66,7 @@ for (let Rows = 0; Rows <= 1; Rows++) {
     }
 }
 basic.forever(function () {
-    if (game.score() >= 7) {
+    if (game.score() >= 10) {
         Started = false
         Player.delete()
         for (let Asteroid of Asteroids) {
@@ -76,20 +76,5 @@ basic.forever(function () {
         music.playSoundEffect(music.builtinSoundEffect(soundExpression.twinkle), SoundExpressionPlayMode.InBackground)
         basic.showString("YOU WIN")
         basic.showString("PRESS B TO RESTART")
-    }
-})
-basic.forever(function () {
-    basic.pause(15000)
-    if (Started == true) {
-        game.removeLife(1)
-        music.startMelody(music.builtInMelody(Melodies.Funeral), MelodyOptions.OnceInBackground)
-        for (let Asteroid of Asteroids) {
-            Asteroid.delete()
-        }
-        for (let Rows = 0; Rows <= 1; Rows++) {
-            for (let Asteroid = 0; Asteroid <= 4; Asteroid++) {
-                Asteroids.push(game.createSprite(Asteroid, Rows))
-            }
-        }
     }
 })
