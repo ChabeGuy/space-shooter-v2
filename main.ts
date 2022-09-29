@@ -24,26 +24,6 @@ input.onGesture(Gesture.TiltLeft, function () {
     Player.move(1)
     Player.turn(Direction.Right, 90)
 })
-input.onButtonPressed(Button.B, function () {
-    game.setScore(0)
-    led.stopAnimation()
-    basic.clearScreen()
-    for (let Asteroid of Asteroids) {
-        Asteroid.delete()
-    }
-    Player.delete()
-    Asteroids = []
-    Started = false
-    music.playSoundEffect(music.builtinSoundEffect(soundExpression.giggle), SoundExpressionPlayMode.UntilDone)
-    Started = true
-    Player = game.createSprite(2, 4)
-    Player.turn(Direction.Left, 90)
-    for (let Rows = 0; Rows <= 1; Rows++) {
-        for (let Asteroid = 0; Asteroid <= 4; Asteroid++) {
-            Asteroids.push(game.createSprite(Asteroid, Rows))
-        }
-    }
-})
 input.onGesture(Gesture.TiltRight, function () {
     Player.turn(Direction.Right, 90)
     Player.move(1)
@@ -75,6 +55,6 @@ basic.forever(function () {
         basic.clearScreen()
         music.playSoundEffect(music.builtinSoundEffect(soundExpression.twinkle), SoundExpressionPlayMode.InBackground)
         basic.showString("YOU WIN")
-        basic.showString("PRESS B TO RESTART")
+        basic.showString("PRESS RESET TO RESTART")
     }
 })
