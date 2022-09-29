@@ -29,6 +29,7 @@ input.onGesture(Gesture.TiltRight, function () {
     Player.move(1)
     Player.turn(Direction.Left, 90)
 })
+let Time = 0
 let Laser: game.LedSprite = null
 let Player: game.LedSprite = null
 let Asteroids: game.LedSprite[] = []
@@ -45,9 +46,11 @@ for (let Rows = 0; Rows <= 1; Rows++) {
         Asteroids.push(game.createSprite(Asteroid, Rows))
     }
 }
+let Elapsed = input.runningTime()
 basic.forever(function () {
     if (game.score() >= 10) {
         Started = false
+        Time = input.runningTime() - Elapsed
         Player.delete()
         for (let Asteroid of Asteroids) {
             Asteroid.delete()
@@ -55,6 +58,7 @@ basic.forever(function () {
         basic.clearScreen()
         music.playSoundEffect(music.builtinSoundEffect(soundExpression.twinkle), SoundExpressionPlayMode.InBackground)
         basic.showString("YOU WIN")
-        basic.showString("PRESS RESET TO RESTART")
+        basic.showString("TIME:")
+        basic.showString("" + Time / 1000 + " SECONDS")
     }
 })
